@@ -13,7 +13,7 @@ router.get('/add', (req, res) => {
 router.post('/add', (req, res) => {
   const newEmployee = req.body;
   const createdEmployee = employeeService.createEmployee(newEmployee);
-  res.redirect('/employees/' + createdEmployee.id)
+  res.redirect('/employees/' + createdEmployee.id);
 });
 
 // Read all users
@@ -35,3 +35,5 @@ router.get('/update/:id', (req, res) => {
   if (!employee) return res.status(404).send('Employee not found');
   res.render('updateEmployee', {employee: employee});
 });
+
+module.exports = router;
