@@ -42,6 +42,16 @@ class EmployeeService {
         return employees.find(employee => employee.id === id);
     }
 
+    deleteEmployee(id) {
+        const employees = this.readEmployees();
+        const employeeIndex = employees.findIndex(employee => employee.id === id);
+        if (employeeIndex === -1) return null;
+
+        const deletedEmployee = employees.splice(employeeIndex, 1);
+        this.writeEmployees(employees);
+        return deletedEmployee[0];
+    }
+
     // Create a new employee
     createEmployee(newEmployee) {
         const employees = this.readEmployees();
@@ -63,16 +73,6 @@ class EmployeeService {
         return updatedEmployee;
     }
 
-    // Delete an employee by ID
-    deleteEmployee(id) {
-        const employees = this.readEmployees();
-        const employeeIndex = employees.findIndex(employee => employee.id === id);
-        if (employeeIndex === -1) return null;
-
-        const deletedEmployee = employees.splice(employeeIndex, 1);
-        this.writeEmployees(employees);
-        return deletedEmployee[0];
-    }
 }
 
 module.exports = EmployeeService;

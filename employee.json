@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "test adsa",
+    "address": "test qub  ",
+    "salary": 20000,
+    "role": "software developer consultant",
+    "employeeNumber": "1"
+  },
+  {
+    "id": 2,
+    "name": "test",
+    "address": "test ",
+    "salary": 2,
+    "role": "software ",
+    "employeeNumber": "12"
+  }
+]
