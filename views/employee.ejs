@@ -26,10 +26,10 @@
               <span class="icon">
                 <i class="fas fa-user"></i>
               </span>
-              User Information
+              Employee Information
             </h1>
 
-            <% if (user) { %>
+            <% if (employee) { %>
 
               <!-- Table -->
               <div class="table-container">
@@ -37,19 +37,19 @@
                   <thead>
                     <tr>
                       <th><span class="icon"><i class="fas fa-user"></i></span> Name</th>
-                      <th><span class="icon"><i class="fas fa-envelope"></i></span> Email</th>
-                      <th><span class="icon"><i class="fas fa-briefcase"></i></span> Role</th>
+                      <th><span class="icon"><i class="fas fa-envelope"></i></span> Address</th>
+                      <th><span class="icon"><i class="fas fa-briefcase"></i></span> Salary</th>
+                       <th><span class="icon"><i class="fas fa-briefcase"></i></span> Role</th>
+                        <th><span class="icon"><i class="fas fa-briefcase"></i></span> Employee Id</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><%= user.name %></td>
-                      <td><%= user.email %></td>
-                      <td>
-                        <span class="tag is-info is-light">
-                          <%= user.role %>
-                        </span>
-                      </td>
+                      <td><%= employee.name %></td>
+                      <td><%= employee.address %></td>
+                      <td><%= employee.salary %></td>
+                      <td><%= employee.role %></td>
+                      <td><%= employee.id %></td>
                     </tr>
                   </tbody>
                 </table>
@@ -62,19 +62,19 @@
                 <span class="icon">
                   <i class="fas fa-exclamation-triangle"></i>
                 </span>
-                No user found.
+                No employee found.
               </div>
 
             <% } %>
 
             <!-- Back Button -->
             <div class="has-text-centered mt-5">
-              <a href="/users/add" class="button is-link is-light">
+              <a href="/employees/add" class="button is-link is-light">
                 <span class="icon">
                   <i class="fas fa-arrow-left"></i>
                 </span>
             
-                <span>Add Another User</span>
+                <span>Add Another Employee</span>
               </a>
             </div>
 

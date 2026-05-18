@@ -26,10 +26,16 @@
                                 <span class="icon">
                                     <i class="fas fa-user-plus"></i>
                                 </span>
-                                Add New User
+                                Add New Employee
                             </h1>
 
-                            <form action="/users/add" method="post">
+                            <!-- The hidden-by-default error notification -->
+                            <div id="error-notification" class="notification is-danger is-light is-hidden">
+                                <button class="delete" onclick="this.parentElement.remove()"></button>
+                                🛑 <strong>Error:</strong> All fields are required. Please fill out the entire form
+                                before saving.
+                            </div>
+                            <form action="/employees/add" method="post">
 
                                 <!-- Name -->
                                 <div class="field">
@@ -42,18 +48,26 @@
                                     </div>
                                 </div>
 
-                                <!-- Email -->
+                                <!-- Address -->
                                 <div class="field">
-                                    <label class="label">Email</label>
+                                    <label class="label">Address</label>
                                     <div class="control has-icons-left">
-                                        <input class="input" type="email" name="email" placeholder="Enter email"
-                                            required>
+                                        <input class="input" type="text" name="address" placeholder="Enter address">
                                         <span class="icon is-small is-left">
-                                            <i class="fas fa-envelope"></i>
+                                            <i class="fas fa-home"></i>
                                         </span>
                                     </div>
                                 </div>
-
+                                <!-- Salary -->
+                                <div class="field">
+                                    <label class="label">Salary</label>
+                                    <div class="control has-icons-left">
+                                        <input class="input" type="number" name="salary" placeholder="Enter salary">
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-pound-sign"></i>
+                                        </span>
+                                    </div>
+                                </div>
                                 <!-- Role -->
                                 <div class="field">
                                     <label class="label">Role</label>
@@ -64,7 +78,6 @@
                                         </span>
                                     </div>
                                 </div>
-                               
                                 <!-- Submit -->
                                 <div class="field mt-5">
                                     <div class="control">
@@ -89,5 +102,19 @@
     </section>
 
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // 1. Check the URL for the ?error=required parameter
+    const urlParams = new URLSearchParams(window.location.search);
+   
+    if (urlParams.get('error') === 'required') {
+        const errorNotification = document.getElementById('error-notification');
+        if (errorNotification) {
+            // 2. Reveal the Bulma alert by removing the hidden class
+            errorNotification.classList.remove('is-hidden');
+        }
+    }
+});
+</script>
 
 </html>
