@@ -29,6 +29,12 @@
                                 Add New Employee
                             </h1>
 
+                            <!-- The hidden-by-default error notification -->
+                            <div id="error-notification" class="notification is-danger is-light is-hidden">
+                                <button class="delete" onclick="this.parentElement.remove()"></button>
+                                🛑 <strong>Error:</strong> All fields are required. Please fill out the entire form
+                                before saving.
+                            </div>
                             <form action="/employees/add" method="post">
 
                                 <!-- Name -->
@@ -72,21 +78,6 @@
                                         </span>
                                     </div>
                                 </div>
-
-
-
-
-                                <!-- Employee Number -->
-                                <div class="field">
-                                    <label class="label">Employee Number</label>
-                                    <div class="control has-icons-left">
-                                        <input class="input" type="text" name="employeeNumber"
-                                            placeholder="Enter employee number">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-id-badge"></i>
-                                        </span>
-                                    </div>
-                                </div>
                                 <!-- Submit -->
                                 <div class="field mt-5">
                                     <div class="control">
@@ -111,6 +102,19 @@
     </section>
 
 </body>
-
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // 1. Check the URL for the ?error=required parameter
+    const urlParams = new URLSearchParams(window.location.search);
+   
+    if (urlParams.get('error') === 'required') {
+        const errorNotification = document.getElementById('error-notification');
+        if (errorNotification) {
+            // 2. Reveal the Bulma alert by removing the hidden class
+            errorNotification.classList.remove('is-hidden');
+        }
+    }
+});
+</script>
 
 </html>

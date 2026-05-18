@@ -9,16 +9,16 @@ function validateEmployee(req, res, next) {
   const { name, position, salary } = req.body;
 
   if (!name || !position || salary === undefined) {
-    return res.status(400).send('All fields are required');
+    return res.redirect('employees/add?error=required');
   }
 
   const parsedSalary = Number(salary);
   if (isNaN(parsedSalary)) {
-    return res.status(400).send('Salary must be a number');
+    return res.redirect('employees/add?error=required');
   }
 
   if (parsedSalary <= 0) {
-    return res.status(400).send('Salary must be greater than 0');
+    return res.redirect('employees/add?error=required');
   }
 
   req.body.salary = parsedSalary;
@@ -31,10 +31,10 @@ router.get('/add', (req, res) => {
 });
 
 // Create a new employee submit
-router.post('/add', validateEmployee, (req, res) => {
+router.post('/add',  (req, res) => {
   const newEmployee = req.body;
   const createdEmployee = employeeService.createEmployee(newEmployee);
-  res.redirect('/employees/' + createdEmployee.id);
+  res.redirect('/employees/' + createdEmployee.id + '?success=true');
 });
 
 // Read all employees
@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
 });
 
 // Update a employee by ID form
-router.get('/update/:id', validateEmployee, (req, res) => {
+router.get('/update/:id',  (req, res) => {
   const employee = employeeService.getEmployeeById(parseInt(req.params.id));
   if (!employee) return res.status(404).send('Employee not found');
   res.render('updateEmployee', {employee: employee});
