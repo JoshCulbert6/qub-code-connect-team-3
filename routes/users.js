@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
   res.render('users', { users: readUser });
 });
 
-// Read a user by ID
+// Read a user by ID2
 router.get('/:id', (req, res) => {
   const user = userService.getUserById(parseInt(req.params.id));
   if (!user) return res.status(404).send('User not found');
