@@ -1,36 +1,91 @@
-<!-- index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information</title>
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Bulma + Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
-    <h1>User Information</h1>
 
-    <% if (user) { %>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><%= user.name %></td>
-                    <td><%= user.email %></td>
-                    <td><%= user.role %></td>
-                </tr>
-            </tbody>
-        </table>
-    <% } else { %>
-        <p>No user found.</p>
-    <% } %>
+<body class="has-background-light">
 
-    
+<section class="section">
+  <div class="container">
+
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+
+        <!-- Card -->
+        <div class="card">
+          <div class="card-content">
+
+            <h1 class="title has-text-centered">
+              <span class="icon">
+                <i class="fas fa-user"></i>
+              </span>
+              User Information
+            </h1>
+
+            <% if (user) { %>
+
+              <!-- Table -->
+              <div class="table-container">
+                <table class="table is-striped is-hoverable is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th><span class="icon"><i class="fas fa-user"></i></span> Name</th>
+                      <th><span class="icon"><i class="fas fa-envelope"></i></span> Email</th>
+                      <th><span class="icon"><i class="fas fa-briefcase"></i></span> Role</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><%= user.name %></td>
+                      <td><%= user.email %></td>
+                      <td>
+                        <span class="tag is-info is-light">
+                          <%= user.role %>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            <% } else { %>
+
+              <!-- Empty State -->
+              <div class="notification is-warning has-text-centered">
+                <span class="icon">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </span>
+                No user found.
+              </div>
+
+            <% } %>
+
+            <!-- Back Button -->
+            <div class="has-text-centered mt-5">
+              <a href="/add" class="button is-link is-light">
+                <span class="icon">
+                  <i class="fas fa-arrow-left"></i>
+                </span>
+            
+                <span>Add Another User</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
 </body>
 </html>
