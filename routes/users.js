@@ -6,7 +6,7 @@ const userService = new UserService();
 
 // Create a new user form
 router.get('/add', (req, res) => {
-  res.render('addUser')
+  res.render('addUser');
 });
 
 // Create a new user submit
