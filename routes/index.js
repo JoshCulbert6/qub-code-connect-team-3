@@ -16,4 +16,16 @@ router.get("/employees",  async (req, res) =>{
   res.render('employees', { employees: readEmployees });
 });
 
+router.get('/delete/:id', (req, res) => {
+  const employee = employeeService.getEmployeeById(parseInt(req.params.id));
+  if (!employee) return res.status(404).send('Employee not found');
+  res.render('deleteEmployee', {employee: employee})
+});
+
+router.post('/delete/:id', (req, res) => {
+  const deletedEmployee = employeeService.deleteEmployee(parseInt(req.params.id));
+  if (!deletedEmployee) return res.status(404).send('Employee not found');
+  res.redirect('/employees')
+});
+
 module.exports = router;
