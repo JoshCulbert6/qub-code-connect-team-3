@@ -39,7 +39,7 @@ router.get('/update/:id', (req, res) => {
 router.post('/update/:id', (req, res) => {
   const updatedEmployee = employeeService.updateEmployee(parseInt(req.params.id), req.body);
   if (!updatedEmployee) return res.status(404).send('Employee not found');
-  res.redirect('/users/' + updatedEmployee.id)
+  res.redirect('/employees' + updatedEmployee.id)
 });
 
 
