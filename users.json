@@ -16,5 +16,11 @@
     "email": "millie.tricklebank@gmail.com",
     "role": "admin",
     "id": 3
+  },
+  {
+    "name": "millie",
+    "email": "millie.tricklebank@gmail.com",
+    "role": "",
+    "id": 4
   }
 ]
