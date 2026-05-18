@@ -1,0 +1,11 @@
+[
+    {
+
+        "name" : "employee test",
+        "address" : "qub test address",
+        "salary" : 20000,
+        "role" : "software developer consultant",
+        "employeeNumber" : "123"
+
+    }
+]
