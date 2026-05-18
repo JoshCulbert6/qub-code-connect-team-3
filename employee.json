@@ -6,5 +6,13 @@
     "salary": 20000,
     "role": "software developer consultant",
     "employeeNumber": "123"
+  },
+  {
+    "id": 2,
+    "name": "test",
+    "address": "test ",
+    "salary": 2,
+    "role": "software ",
+    "employeeNumber": "1"
   }
 ]

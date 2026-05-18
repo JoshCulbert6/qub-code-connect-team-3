@@ -28,4 +28,20 @@ router.post('/delete/:id', (req, res) => {
   res.redirect('/employees')
 });
 
+
+router.get('/update/:id', (req, res) => {
+  const employee = employeeService.getEmployeeById(parseInt(req.params.id));
+  if (!employee) return res.status(404).send('Employee not found');
+  res.render('updateEmployee', {employee: employee})
+});
+
+// Update a user by ID
+router.post('/update/:id', (req, res) => {
+  const updatedEmployee = employeeService.updateEmployee(parseInt(req.params.id), req.body);
+  if (!updatedEmployee) return res.status(404).send('Employee not found');
+  res.redirect('/users/' + updatedEmployee.id)
+});
+
+
+
 module.exports = router;

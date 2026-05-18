@@ -38,6 +38,18 @@ class EmployeeService {
         this.writeEmployees(employees);
         return deletedEmployee[0];
     }
+
+    updateEmployee(id, updatedEmployee) {
+        const employees = this.readEmployees();
+        const employeeIndex = employees.findIndex(employee => employee.id === id);
+        if (employeeIndex === -1) return null;
+
+        updatedEmployee.id = id;
+        employees[employeeIndex] = updatedEmployee;
+        this.writeEmployees(employees);
+        return updatedEmployee;
+    }
+
 }
 
 module.exports = EmployeeService;
