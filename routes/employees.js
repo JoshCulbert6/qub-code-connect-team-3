@@ -8,7 +8,8 @@ const employeeService = new EmployeeService();
 router.get("/",  async (req, res) =>{
   const readEmployees = await employeeService.readEmployees();
   if(!readEmployees) return res.status(404).send('No employees to show');
-  res.render('employeesList', { employees: readEmployees });
+  const user = req.session && req.session.user ? req.session.user : { role: 'employee' };
+  res.render('employeesList', { employees: readEmployees, user });
 }); 
 
 // Create a new employee form

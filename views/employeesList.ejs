@@ -118,7 +118,7 @@
                                         <td class="py-4 px-5">
                                             <!-- Buttons Group for Actions -->
 
-                                            <% if (user.role === 'admin'){%>
+                                            <% if (user && user.role === 'admin'){%>
                                             <div class="buttons is-centered fields are-addons">
                                                 <!-- Edit Button -->
                                                 <a href="/employees/update/<%= employee.id %>" class="button is-small is-light is-link">
