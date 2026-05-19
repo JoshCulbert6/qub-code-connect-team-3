@@ -53,7 +53,7 @@
                                     <label class="label">Address Line 1</label>
                                     <div class="control has-icons-left">
                                         <input class="input" type="text" name="address_line1"
-                                            placeholder="House Number or Name">
+                                            placeholder="House Number or Name" required>
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-home"></i>
                                         </span>
@@ -64,37 +64,38 @@
                                     <label class="label">Address Line 2</label>
                                     <div class="control">
                                         <input class="input" type="text" name="address_line2"
-                                            placeholder="Street address">
+                                            placeholder="Street address" required>
                                     </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="label">City</label>
                                     <div class="control">
-                                        <input class="input" type="text" name="city" placeholder="City">
+                                        <input class="input" type="text" name="city" placeholder="City" required>
                                     </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="label">County / State</label>
                                     <div class="control">
-                                        <input class="input" type="text" name="state" placeholder="County or state">
+                                        <input class="input" type="text" name="state" placeholder="County or state"
+                                            required>
                                     </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="label">Postcode</label>
                                     <div class="control">
-                                        <input class="input" type="text" name="postcode"
-                                            placeholder="Enter 6-digit postcode" required pattern="\d{6}"
-                                            title="Postcode must be exactly 6 digits">
+                                        <input class="input" type="text" name="postcode" placeholder="Enter postcode"
+                                            required pattern="[A-Za-z0-9]+"
+                                            title="Postcode must contain only letters and numbers">
                                     </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="label">Country</label>
                                     <div class="control">
-                                        <input class="input" type="text" name="country" placeholder="Country">
+                                        <input class="input" type="text" name="country" placeholder="Country" required>
                                     </div>
                                 </div>
                                 <!-- Salary -->
