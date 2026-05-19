@@ -4,10 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
+const session = require('express-session');
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var employeesRouter = require('./routes/employees');
+var authRouter = require('./routes/auth');
+const requireLogin = require('./services/requireLogin');
 
 var app = express();
 
@@ -22,10 +27,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/employees', employeesRouter);
 
+app.use(session({
+  secret: 'mySecretKey',
+  resave: false,
+  saveUninitialized: false
+}));
+
+
+app.use('/auth', authRouter);
+
+app.use('/', requireLogin, indexRouter);
+app.use('/users', requireLogin(['admin']), usersRouter);
+app.use('/employees', requireLogin(['admin', 'employee']), employeesRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

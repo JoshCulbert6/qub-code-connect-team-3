@@ -1,20 +1,16 @@
 [
   {
-    "id": 1,
-    "name": "Test2",
-    "email": "test@test.com",
-    "role": "Software Engineer"
-  },
-  {
     "name": "millie",
-    "email": "millie@qub.cpm",
+    "email": "admin@gmail.com",
     "role": "admin",
+    "password" : "456",
     "id": 2
   },
   {
     "name": "millie",
-    "email": "millie.tricklebank@gmail.com",
-    "role": "admin",
+    "email": "employee@gmail.com",
+    "role": "employee",
+    "password" : "123",
     "id": 3
   },
   {

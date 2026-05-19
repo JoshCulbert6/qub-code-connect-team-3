@@ -1,15 +1,5 @@
 [
   {
-    "name": "millie",
-    "email": [
-      "test",
-      "1",
-      "5"
-    ],
-    "role": "junior",
-    "id": 3
-  },
-  {
     "name": "Millie",
     "address_line1": "12",
     "address_line2": "Ava Ave",
