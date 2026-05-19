@@ -50,29 +50,75 @@
 
                                 <!-- Address -->
                                 <div class="field">
-                                    <label class="label">Address</label>
+                                    <label class="label">Address Line 1</label>
                                     <div class="control has-icons-left">
-                                        <input class="input" type="text" name="address" placeholder="Enter address">
+                                        <input class="input" type="text" name="address_line1"
+                                            placeholder="House Number or Name" required>
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-home"></i>
                                         </span>
                                     </div>
                                 </div>
+
+                                <div class="field">
+                                    <label class="label">Address Line 2</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="address_line2"
+                                            placeholder="Street address" required>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">City</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="city" placeholder="City" required>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">County / State</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="state" placeholder="County or state"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Postcode</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="postcode" placeholder="Enter postcode"
+                                            required pattern="[A-Za-z0-9]+"
+                                            title="Postcode must contain only letters and numbers">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Country</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="country" placeholder="Country" required>
+                                    </div>
+                                </div>
                                 <!-- Salary -->
                                 <div class="field">
                                     <label class="label">Salary</label>
-                                    <div class="control has-icons-left">
-                                        <input class="input" type="number" name="salary" placeholder="Enter salary">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-pound-sign"></i>
-                                        </span>
+                                    <div class="control">
+                                        <input class="input" type="text" id="salary" name="salary"
+                                            placeholder="Salary will appear here" readonly>
                                     </div>
                                 </div>
                                 <!-- Role -->
                                 <div class="field">
                                     <label class="label">Role</label>
                                     <div class="control has-icons-left">
-                                        <input class="input" type="text" name="role" placeholder="Enter role">
+                                        <div class="select is-fullwidth">
+                                            <select name="role" id="role" onchange="updateSalary()">
+                                                <option value="">Select role</option>
+                                                <option value="junior" data-salary="25000">Junior Developer</option>
+                                                <option value="mid" data-salary="40000">Mid-Level Developer</option>
+                                                <option value="senior" data-salary="60000">Senior Developer</option>
+                                                <option value="manager" data-salary="80000">Manager</option>
+                                            </select>
+                                        </div>
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-briefcase"></i>
                                         </span>
@@ -103,18 +149,26 @@
 
 </body>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    // 1. Check the URL for the ?error=required parameter
-    const urlParams = new URLSearchParams(window.location.search);
-   
-    if (urlParams.get('error') === 'required') {
-        const errorNotification = document.getElementById('error-notification');
-        if (errorNotification) {
-            // 2. Reveal the Bulma alert by removing the hidden class
-            errorNotification.classList.remove('is-hidden');
-        }
+    function updateSalary() {
+        const roleSelect = document.getElementById("role");
+        const selectedOption = roleSelect.options[roleSelect.selectedIndex];
+        const salary = selectedOption.getAttribute("data-salary");
+
+        document.getElementById("salary").value = salary ? "£" + salary : "";
     }
-});
+
+    function validateForm() {
+        const postcode = document.querySelector('input[name="postcode"]').value;
+
+        const postcodeRegex = /^\d{6}$/;
+
+        if (!postcodeRegex.test(postcode)) {
+            alert("Postcode must be exactly 6 digits and cannot be empty.");
+            return false;
+        }
+
+        return true;
+    }
 </script>
 
 </html>
