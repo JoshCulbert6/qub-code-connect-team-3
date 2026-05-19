@@ -149,6 +149,21 @@
 
 </body>
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Check the URL for the ?error=required parameter
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.get('error') === 'required') {
+            const errorNotification = document.getElementById('error-notification');
+            if (errorNotification) {
+                // 2. Reveal the Bulma alert by removing the hidden class
+                errorNotification.classList.remove('is-hidden');
+            }
+        }
+    });
+
+
+
     function updateSalary() {
         const roleSelect = document.getElementById("role");
         const selectedOption = roleSelect.options[roleSelect.selectedIndex];
@@ -158,17 +173,17 @@
     }
 
     function validateForm() {
-        const postcode = document.querySelector('input[name="postcode"]').value;
+    const postcode = document.querySelector('input[name="postcode"]').value;
 
-        const postcodeRegex = /^\d{6}$/;
+    const postcodeRegex = /^\d{6}$/;
 
-        if (!postcodeRegex.test(postcode)) {
-            alert("Postcode must be exactly 6 digits and cannot be empty.");
-            return false;
-        }
-
-        return true;
+    if (!postcodeRegex.test(postcode)) {
+        alert("Postcode must be exactly 6 digits and cannot be empty.");
+        return false;
     }
+
+    return true;
+}
 </script>
 
 </html>
