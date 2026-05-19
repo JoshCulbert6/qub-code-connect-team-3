@@ -37,7 +37,7 @@ app.use(session({
 
 app.use('/auth', authRouter);
 
-app.use('/', requireLogin, indexRouter);
+app.use('/', requireLogin(), indexRouter);
 app.use('/users', requireLogin(['admin']), usersRouter);
 app.use('/employees', requireLogin(['admin', 'employee']), employeesRouter);
 // catch 404 and forward to error handler

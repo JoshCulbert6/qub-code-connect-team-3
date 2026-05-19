@@ -27,8 +27,14 @@
                             Login
                         </h1>
 
+                        <% if (typeof error !== 'undefined' && error) { %>
+                            <div class="notification is-danger is-light">
+                                <%= error %>
+                            </div>
+                        <% } %>
+
                      
-                        <form action="/login" method="POST">
+                        <form action="/auth/login" method="POST">
 
                             <!-- Email / Username -->
                             <div class="field">

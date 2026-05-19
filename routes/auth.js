@@ -26,7 +26,8 @@ router.post("/login", (req, res) => {
 console.log("LOGIN USER:", req.session.user);
   if (user.role === 'admin') return res.redirect('/');
   if (user.role === 'employee') return res.redirect('/employees');
-  
+
+  return res.render('login', { error: 'User role is not configured' });
 });
 
 module.exports = router;
