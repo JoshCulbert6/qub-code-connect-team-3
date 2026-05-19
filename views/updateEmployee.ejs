@@ -1,34 +1,181 @@
-<!-- index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Employee</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
-    <h1>Update Employee</h1>
 
-    <form action="/employees/update/<%= employee.id %>" method="post">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" value="<%= employee.name %>"><br>
+<body class="has-background-light">
+<div class="field mt-4">
+    <div class="control">
+        <a href="/employees" class="button is-light is-fullwidth">
+            <span class="icon">
+                <i class="fas fa-arrow-left"></i>
+            </span>
+            <span>Back to Employees</span>
+        </a>
+    </div>
+</div>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-half">
 
-        <label for="address">Address:</label><br>
-        <input type="text" id="address" name="email" value="<%= employee.address %>"><br>
+                    <div class="card">
+                        <div class="card-content">
 
-        <label for="salary">Salary:</label><br>
-        <input type="number" id="salary" name="email" value="<%= employee.salary %>"><br>
+                            <h1 class="title has-text-centered">
+                                <span class="icon">
+                                    <i class="fas fa-user-edit"></i>
+                                </span>
+                                Update Employee
+                            </h1>
+                            <form action="/employees/update/<%= employee.id %>" method="POST">
 
-        <label for="role">Role:</label><br>
-        <input type="text" id="role" name="role" value="<%= employee.role %>"><br>
+                                <!-- Name -->
+                                <div class="field">
+                                    <label class="label">Name</label>
+                                    <div class="control has-icons-left">
+                                        <input class="input" type="text" name="name" value="<%= employee.name %>"
+                                            required>
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                    </div>
+                                </div>
 
-        <label for="employeeNumber">Employee Number:</label><br>
-        <input type="text" id="employeeNumber" name="email" value="<%= employee.employeeNumber %>"><br>
+                                <!-- Address -->
+                                <div class="field">
+                                    <label class="label">Address Line 1</label>
+                                    <div class="control has-icons-left">
+                                        <input class="input" type="text" name="address_line1"
+                                            value="<%= employee.address_line1 %>" required>
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-home"></i>
+                                        </span>
+                                    </div>
+                                </div>
 
+                                <div class="field">
+                                    <label class="label">Address Line 2</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="address_line2"
+                                            value="<%= employee.address_line2 %>" required>
+                                    </div>
+                                </div>
 
+                                <div class="field">
+                                    <label class="label">City</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="city" value="<%= employee.city %>"
+                                            required>
+                                    </div>
+                                </div>
 
-        <input type="submit" value="Submit">
-    </form> 
+                                <div class="field">
+                                    <label class="label">County / State</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="state" value="<%= employee.state %>"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Postcode</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="postcode"
+                                            value="<%= employee.postcode %>" required pattern="[A-Za-z0-9]+">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Country</label>
+                                    <div class="control">
+                                        <input class="input" type="text" name="country" value="<%= employee.country %>"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <!-- Salary -->
+                                <div class="field">
+                                    <label class="label">Salary</label>
+                                    <div class="control">
+                                        <input class="input" type="text" id="salary" name="salary"
+                                            value="<%= employee.salary %>" readonly>
+                                    </div>
+                                </div>
+
+                                <!-- Role -->
+                                <div class="field">
+                                    <label class="label">Role</label>
+                                    <div class="control has-icons-left">
+                                        <div class="select is-fullwidth">
+                                            <select name="role" id="role" onchange="updateSalary()">
+                                                <option value="">Select role</option>
+
+                                                <option value="junior" data-salary="25000" <%=employee.role==='junior'
+                                                    ? 'selected' : '' %>>
+                                                    Junior Developer
+                                                </option>
+
+                                                <option value="mid" data-salary="40000" <%=employee.role==='mid'
+                                                    ? 'selected' : '' %>>
+                                                    Mid-Level Developer
+                                                </option>
+
+                                                <option value="senior" data-salary="60000" <%=employee.role==='senior'
+                                                    ? 'selected' : '' %>>
+                                                    Senior Developer
+                                                </option>
+
+                                                <option value="manager" data-salary="80000" <%=employee.role==='manager'
+                                                    ? 'selected' : '' %>>
+                                                    Manager
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-briefcase"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Submit -->
+                                <div class="field mt-5">
+                                    <div class="control">
+                                        <button class="button is-warning is-fullwidth">
+                                            <span class="icon">
+                                                <i class="fas fa-save"></i>
+                                            </span>
+                                            <span>Update</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
+
+<script>    function updateSalary() {
+        const roleSelect = document.getElementById("role");
+        const selectedOption = roleSelect.options[roleSelect.selectedIndex];
+        const salary = selectedOption.getAttribute("data-salary");
+
+        document.getElementById("salary").value = salary ? "£" + salary : "";
+    }</script>
+
 </html>
